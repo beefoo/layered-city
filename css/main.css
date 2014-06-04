@@ -43,17 +43,13 @@ body {
   display: inline-block;
   overflow: hidden;
 }
-.image-container img {
+.image-container img,
+.image-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  transform-origin: 0 0;
-  -webkit-transform-origin: 0 0;
-  -moz-transform-origin: 0 0;
-  -o-transform-origin: 0 0;
-  -webkit-transition: -webkit-transform 1s;
-     -moz-transition: -moz-transform 1s;
-       -o-transition: -o-transform 1s;
-          transition: transform 1s;
+  height: 100%;
 }
 .image-section-matrix {
   position: absolute;
@@ -102,6 +98,12 @@ body {
   right: 145px;
 }
 
+.invisible {
+  opacity: 0;
+}
+.hide {
+  display: none;
+}
 .clearfix:before,
 .clearfix:after {
   content: " ";

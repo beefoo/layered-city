@@ -34,9 +34,54 @@
     App.prototype.initListeners = function(){
       var that = this;
       
+      this.warpers = {};
+      
       $('.warp-link').on('click', function(){
+        that.findMaster();
         that.doWarp();
       });
+    };
+    
+    App.prototype.coordinatesToPoints = function(c){
+      return [
+        new ImgWarper.Point(c.x1, c.y1),
+        new ImgWarper.Point(c.x2, c.y2),
+        new ImgWarper.Point(c.x3, c.y3),
+        new ImgWarper.Point(c.x4, c.y4)
+      ];      
+    };
+    
+    App.prototype.distance = function(x1, y1, x2, y2) {
+      var xs = x2 - x1;
+      xs = xs * xs;
+      
+      var ys = y2 - y1;
+      ys = ys * ys;
+      
+      return Math.sqrt( xs + ys );
+    };
+    
+    App.prototype.doImageWarp = function($canvas, $image, mc, sc) {
+      var canvas = $canvas[0],
+          id = $canvas.attr('id'),
+          image = $image[0],
+          ctx = canvas.getContext("2d"),
+          imgData;
+      
+      // warper not initialized
+      if (this.warpers[id] === undefined) {        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);        
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx.fillStyle = "#333333";
+        ctx.drawImage(image, 0, 0, image.width, image.height);
+        imgData = ctx.getImageData(0, 0, image.width, image.height);
+        this.warpers[id] = new ImgWarper.Warper(canvas, image, imgData);    
+        $image.addClass('invisible');     
+      }
+      
+      // do warp from slave to master coordinates
+      this.warpers[id].warp(this.coordinatesToPoints(sc), this.coordinatesToPoints(mc));           
     };
     
     App.prototype.doTransform = function($el, c){
@@ -54,20 +99,42 @@
     App.prototype.doWarp = function(){
       var that = this,
           $master = $('.master').first(),
-          $matrix = $master.find
           mc = this.getHandleCoordinates($master),
           $slaves = $('.slave');
       
       $slaves.each(function(){        
-        var $matrix = $(this).find('.image-section-matrix').first(),
+        var $canvas = $(this).find('.canvas').first(),
             $image = $(this).find('.image').first(),
-            sc = that.getHandleCoordinates($(this)),
-            c = that.getTransformationCoordinates($image, $matrix, mc, sc);
+            sc = that.getHandleCoordinates($(this));
         
-        // console.log(c)
-        that.doTransform($image, c);
+        // console.log(mc, sc)
+        that.doImageWarp($canvas, $image, mc, sc);
       });
       
+      $('.image-section-matrix, .handle').hide();
+      
+    };
+    
+    App.prototype.findMaster = function(){
+      var that = this,
+          max = 0,
+          master_i = 0;
+      
+      // make all slave
+      $('.image-container').removeClass('master').addClass('slave');
+      
+      // find image container with biggest matrix
+      $('.image-container').each(function(i){
+        var c = that.getHandleCoordinates($(this)),
+            diagonal = that.distance(c.x1, c.y1, c.x2, c.y2);            
+        if (diagonal > max) {
+          max = diagonal
+          master_i = i;
+        }        
+      });
+      
+      // make it master
+      $('.image-container').eq(master_i).removeClass('slave').addClass('master');
     };
     
     App.prototype.getElementCoordinates = function($el){
@@ -94,24 +161,6 @@
       return {
         x1: x1, x2: x2, x3: x3, x4: x4,
         y1: y1, y2: y2, y3: y3, y4: y4
-      }
-    };
-    
-    // determine transformation coordinates based on master/slave coordinates
-    App.prototype.getTransformationCoordinates = function($el, $m, c1, c2){
-      var c = this.getElementCoordinates($el),
-          d = {
-            x1: (c1.x1-c2.x1), y1: (c1.y1-c2.y1),
-            x2: (c1.x2-c2.x2), y2: (c1.y2-c2.y2),
-            x3: (c1.x3-c2.x3), y3: (c1.y3-c2.y3),
-            x4: (c1.x4-c2.x4), y4: (c1.y4-c2.y4)
-          };
-      
-      return {
-        x1: Math.round(c.x1+d.x1), y1: Math.round(c.y1+d.y1),
-        x2: Math.round(c.x2+d.x2), y2: Math.round(c.y2+d.y2),
-        x3: Math.round(c.x3+d.x3), y3: Math.round(c.y3+d.y3),
-        x4: Math.round(c.x4+d.x4), y4: Math.round(c.y4+d.y4)
       }
     };
     

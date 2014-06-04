@@ -10,16 +10,19 @@ ImgWarper.Warper = function(
   var source = img;
   this.width = source.width;
   this.height = source.height;
-  this.imgData = imgData.data;
+  this.imgData = imgData.data;  
+
   canvas.width = source.width;
   canvas.height = source.height;
-  this.bilinearInterpolation = 
-    new ImgWarper.BilinearInterpolation(this.width, this.height, canvas);
+  
+  this.bilinearInterpolation = new ImgWarper.BilinearInterpolation(this.width, this.height, canvas);
 
   this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+  
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
   this.ctx.putImageData(imgData, 0, 0);
-  console.log('drawn');
+  // console.log('drawn');
 
   this.grid = [];
   for (var i = 0; i < this.width ; i += this.gridSize) {
@@ -34,7 +37,6 @@ ImgWarper.Warper = function(
 }
 
 ImgWarper.Warper.prototype.warp = function(fromPoints, toPoints) {  
-  var t0 = (new Date()).getTime();
   var deformation = 
     new ImgWarper.AffineDeformation(toPoints, fromPoints, this.alpha);
   var transformedGrid = [];
@@ -45,18 +47,10 @@ ImgWarper.Warper.prototype.warp = function(fromPoints, toPoints) {
         deformation.pointMover(this.grid[i][2]),
         deformation.pointMover(this.grid[i][3])];
   }
-  var t1 = (new Date()).getTime();
-  var newImg = this.bilinearInterpolation
-    .generate(this.imgData, this.grid, transformedGrid);
+  var newImg = this.bilinearInterpolation.generate(this.imgData, this.grid, transformedGrid);
   this.ctx.setTransform(1, 0, 0, 1, 0, 0);
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   this.ctx.putImageData(newImg, 0, 0);
-  var t2 = (new Date()).getTime();
-  document.getElementById('fps').innerHTML = 
-    'Deform: ' + (t1 - t0) + 'ms; interpolation: ' + (t2 - t1) + 'ms';
-  if (document.getElementById('show-grid').checked) {
-    this.drawGrid(fromPoints, toPoints);
-  }
 }
 
 ImgWarper.Warper.prototype.drawGrid = function(fromPoints, toPoints) {
