@@ -22,26 +22,49 @@ body {
 
 }
 
-.container {
-  /* width: 896px;
-  height: 606px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -448px;
-  margin-top: -303px;
-  background: #eee; */
-  padding: 20px;
-  box-sizing:border-box;
-  -moz-box-sizing:border-box;
+.container,
+.buttons {
+  width: 920px;
+  margin: 20px auto;
 }
-
-.image-container {
-  width: 896px;
-  height: 606px;
+.nav {
+  float: left;
+}
+.nav-link {
+  display: block;
+  width: 106px;
+  padding: 0 10px 10px 0;
+  opacity: 0.6;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+.nav-link:hover {
+  opacity: 0.9;
+}
+.nav-link.active {
+  opacity: 1;
+}
+.nav img {
+  width: 100%;
+  height: auto;
+}
+.content {
   position: relative;
-  display: inline-block;
+  width: 800px;
+  height: 542px;
+  float: right;
+}
+.image-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
   overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.image-container.active {
+  z-index: 10;
 }
 .image-container img,
 .image-container canvas {
@@ -51,10 +74,19 @@ body {
   width: 100%;
   height: 100%;
 }
+.image-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1.2em;
+  color: #fff;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+  text-transform: uppercase;
+}
 .image-section-matrix {
   position: absolute;
-  width: 596px;
-  height: 406px;
+  width: 500px;
+  height: 342px;
   top: 0;
   left: 0;
   background: #fff;
@@ -96,6 +128,24 @@ body {
 .handle.br {
   bottom: 95px;
   right: 145px;
+}
+
+.buttons {
+  text-align: right;
+}
+.buttons button {
+  display: inline-block;
+  background: #d14747;
+  border: none;
+  margin-left: 10px;
+  font-size: 1.4em;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+.buttons button:hover {
+  background: #ef7575;
 }
 
 .invisible {
