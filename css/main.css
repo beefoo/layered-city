@@ -18,12 +18,8 @@ video {
   vertical-align: middle;
 }
 
-body {
-
-}
-
 .container,
-.buttons {
+.controls {
   width: 920px;
   margin: 20px auto;
 }
@@ -34,7 +30,8 @@ body {
   display: block;
   width: 106px;
   padding: 0 10px 10px 0;
-  opacity: 0.6;
+  opacity: 0.4;
+  border-bottom: 0px;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
 }
@@ -47,6 +44,16 @@ body {
 .nav img {
   width: 100%;
   height: auto;
+  border-bottom: 0px;
+  -webkit-transition: border-bottom 0.5s, -webkit-transform 0.5s;
+  transition: border-bottom 0.5s, transform 0.5s;
+}
+.nav-link:hover img {
+  transform: translateX(4px);
+  -webkit-transform: translateX(4px);
+}
+.nav-link.active img {
+  border-bottom: 4px solid #d14747;
 }
 .content {
   position: relative;
@@ -62,17 +69,51 @@ body {
   top: 0;
   left: 0;
   z-index: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
 }
 .image-container.active {
   z-index: 10;
+  opacity: 1;
 }
-.image-container img,
-.image-container canvas {
+.mask-mode .image-container,
+.mask-mode .image-container.active {
+  opacity: 1;
+  z-index: 10;
+}
+.mask-mode .image-container.active ~ .image-container {
+  z-index: 0;
+  opacity: 0;
+}
+.image-container .image,
+.image-container .canvas {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+}
+.mask-mode .image-container .canvas {
+  cursor: crosshair;
+}
+.drawing-board {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  cursor: crosshair;
+}
+.drawing-board .rectangle {
+  background: #d14747;
+  opacity: 0.3;
+  position: absolute;
+}
+.drawing-board.active {
+  display: block;
 }
 .image-label {
   position: absolute;
@@ -130,22 +171,46 @@ body {
   right: 145px;
 }
 
-.buttons {
+.controls {
   text-align: right;
 }
-.buttons button {
-  display: inline-block;
+.controls .switch {
+  width: 320px;
+  float: right;
+  margin-left: 20px;
+}
+.controls button {
+  display: block;
+  float: right;
   background: #d14747;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45);
   border: none;
-  margin-left: 10px;
-  font-size: 1.4em;
-  padding: 6px 12px;
-  text-transform: uppercase;
+  margin-left: 20px;
+  font-size: 1em;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 30px;
+  border-radius: 3px;
+  vertical-align: middle;
+  font-weight: bold;
   -webkit-transition: background-color 0.5s;
   transition: background-color 0.5s;
 }
-.buttons button:hover {
-  background: #ef7575;
+.controls button:hover {
+  background-color: #dd5858;
+}
+.switch-light input:focus ~ a, .switch-light input:focus + label,
+.switch-toggle input:focus ~ a, .switch-toggle input:focus + label {
+  outline: none;
+}
+.switch-candy a {
+  background-color: #d14747;
+}
+.switch-candy input:checked + label {
+  color: #fff;
+  text-shadow: none;
 }
 
 .invisible {

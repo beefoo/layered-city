@@ -17,9 +17,17 @@
     App.prototype.initListeners = function(){
       var that = this;
       
-      $('.nav-link').on('click', function(){
+      $('.nav-link').on('click', function(e){
+        e.preventDefault();
         that.showContent($(this).attr('href'))
-      });      
+      });
+      
+      $('.warp-link').on('click', function(){
+        $('.warp-tool').hide();
+        $('.mask-tool').show();
+        $('.container').addClass('mask-mode');
+        $('body').trigger('mask-mode');
+      });     
       
     };
     

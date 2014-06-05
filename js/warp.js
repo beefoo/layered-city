@@ -11,8 +11,31 @@
     }   
     
     Warp.prototype.init = function(){
+      // this.initCanvases();
       this.initDraggable();
       this.initListeners();
+    };
+    
+    Warp.prototype.initCanvases = function(){
+      var that = this;
+      
+      // initialize canvases
+      $('.image').one('load', function() {
+        var image = $(this)[0],
+            target = $(this).attr('data-target'),
+            canvas = $(target)[0],
+            ctx = canvas.getContext("2d");
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);        
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx.drawImage(image, 0, 0, image.width, image.height);
+
+        console.log('loaded', target);
+        
+      }).each(function() {
+        if(this.complete) $(this).load();
+      });
     };
     
     Warp.prototype.initDraggable = function(){
@@ -101,9 +124,9 @@
       var that = this,
           $master = $('.master').first(),
           mc = this.getHandleCoordinates($master),
-          $slaves = $('.slave');
+          $containers = $('.image-container');
       
-      $slaves.each(function(){        
+      $containers.each(function(){        
         var $canvas = $(this).find('.canvas').first(),
             $image = $(this).find('.image').first(),
             sc = that.getHandleCoordinates($(this));
@@ -201,4 +224,3 @@
   });
 
 }).call(this);
-

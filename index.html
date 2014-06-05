@@ -10,7 +10,8 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/vendor/normalize.css">
+<link rel="stylesheet" href="css/vendor/toggle-switch.css">
 <link rel="stylesheet" href="css/main.css">
 <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 
@@ -20,8 +21,8 @@
   <div class="container clearfix">
   
     <div class="nav">
-      <a href="#container0" class="nav-link active" title="Houston & Bowery 2006"><img src="img/houston_bowery01.jpg" /></a>
-      <a href="#container1" class="nav-link" title="Houston & Bowery 2007"><img src="img/houston_bowery02.jpg" /></a>
+      <a href="#container0" class="nav-link active" title="Houston & Bowery 2007"><img src="img/houston_bowery01.jpg" /></a>
+      <a href="#container1" class="nav-link" title="Houston & Bowery 2008"><img src="img/houston_bowery02.jpg" /></a>
       <a href="#container2" class="nav-link" title="Houston & Bowery 2009"><img src="img/houston_bowery03.jpg" /></a>
       <a href="#container3" class="nav-link" title="Houston & Bowery 2011"><img src="img/houston_bowery04.jpg" /></a>
       <a href="#container4" class="nav-link" title="Houston & Bowery 2012"><img src="img/houston_bowery05.jpg" /></a>
@@ -31,19 +32,9 @@
     <div class="content">
   
       <div id="container0" class="image-container slave active">
-        <img id="image0" class="image" src="img/houston_bowery01.jpg" width="800" height="542" />
+        <img id="image0" class="image" src="img/houston_bowery01.jpg" width="800" height="542" data-target="#canvas0" />
         <canvas id="canvas0" class="canvas" width="800" height="542"></canvas>
-        <div class="image-label">Houston &amp; Bowery 2006</div>
-        <div class="image-section-matrix"></div>
-        <div class="handle tl"></div>
-        <div class="handle tr"></div>
-        <div class="handle bl"></div>
-        <div class="handle br"></div>
-      </div>
-      
-      <div id="container1" class="image-container slave">
-        <img id="image1" class="image" src="img/houston_bowery02.jpg" width="800" height="542" />
-        <canvas id="canvas1" class="canvas" width="800" height="542"></canvas>
+        <div class="drawing-board" data-target="#canvas0"><div class="rectangle"></div></div>        
         <div class="image-label">Houston &amp; Bowery 2007</div>
         <div class="image-section-matrix"></div>
         <div class="handle tl"></div>
@@ -52,9 +43,22 @@
         <div class="handle br"></div>
       </div>
       
+      <div id="container1" class="image-container slave">
+        <img id="image1" class="image" src="img/houston_bowery02.jpg" width="800" height="542" data-target="#canvas1" />
+        <canvas id="canvas1" class="canvas" width="800" height="542"></canvas>
+        <div class="drawing-board" data-target="#canvas1"><div class="rectangle"></div></div>        
+        <div class="image-label">Houston &amp; Bowery 2008</div>
+        <div class="image-section-matrix"></div>
+        <div class="handle tl"></div>
+        <div class="handle tr"></div>
+        <div class="handle bl"></div>
+        <div class="handle br"></div>
+      </div>
+      
       <div id="container2" class="image-container slave">
-        <img id="image2" class="image" src="img/houston_bowery03.jpg" width="800" height="542" />
+        <img id="image2" class="image" src="img/houston_bowery03.jpg" width="800" height="542" data-target="#canvas2" />
         <canvas id="canvas2" class="canvas" width="800" height="542"></canvas>
+        <div class="drawing-board" data-target="#canvas2"><div class="rectangle"></div></div>        
         <div class="image-label">Houston &amp; Bowery 2009</div>
         <div class="image-section-matrix"></div>
         <div class="handle tl"></div>
@@ -64,8 +68,9 @@
       </div>
       
       <div id="container3" class="image-container slave">
-        <img id="image3" class="image" src="img/houston_bowery04.jpg" width="800" height="542" />
+        <img id="image3" class="image" src="img/houston_bowery04.jpg" width="800" height="542" data-target="#canvas3" />
         <canvas id="canvas3" class="canvas" width="800" height="542"></canvas>
+        <div class="drawing-board" data-target="#canvas3"><div class="rectangle"></div></div>        
         <div class="image-label">Houston &amp; Bowery 2011</div>
         <div class="image-section-matrix"></div>
         <div class="handle tl"></div>
@@ -75,8 +80,9 @@
       </div>
       
       <div id="container4" class="image-container slave">
-        <img id="image4" class="image" src="img/houston_bowery05.jpg" width="800" height="542" />
+        <img id="image4" class="image" src="img/houston_bowery05.jpg" width="800" height="542" data-target="#canvas4" />
         <canvas id="canvas4" class="canvas" width="800" height="542"></canvas>
+        <div class="drawing-board" data-target="#canvas4"><div class="rectangle"></div></div>        
         <div class="image-label">Houston &amp; Bowery 2012</div>
         <div class="image-section-matrix"></div>
         <div class="handle tl"></div>
@@ -86,8 +92,9 @@
       </div>
       
       <div id="container5" class="image-container slave">
-        <img id="image5" class="image" src="img/houston_bowery06.jpg" width="800" height="542" />
+        <img id="image5" class="image" src="img/houston_bowery06.jpg" width="800" height="542" data-target="#canvas5" />
         <canvas id="canvas5" class="canvas" width="800" height="542"></canvas>
+        <div class="drawing-board" data-target="#canvas5"><div class="rectangle"></div></div>        
         <div class="image-label">Houston &amp; Bowery 2013</div>
         <div class="image-section-matrix"></div>
         <div class="handle tl"></div>
@@ -100,21 +107,32 @@
   
   </div> <!-- /container -->
   
-  <div class="buttons">
-    <button class="warp-link">Align Images</button>
-  </div>
-  
-  
+  <div class="controls clearfix">
+    <button class="warp-link warp-tool">Align Images</button>
+    <div class="switch mask-tool hide">
+      <div class="switch-toggle switch-candy">
+        <input id="brush" name="tool" type="radio" value="brush" checked>
+        <label for="brush" onclick="">Brush</label>      
+        <input id="rectangle" name="tool" value="rectangle" type="radio">
+        <label for="rectangle" onclick="">Rectangle</label>      
+        <a></a>
+      </div>
+    </div>
+    <button class="reset-mask-link mask-tool hide">Reset</button>
+  </div> 
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-  <script>window.jQuery.ui || document.write('<script src="js/vendor/jquery-ui-1.10.4.min.js"><\/script>')</script>  
+  <script>window.jQuery.ui || document.write('<script src="js/vendor/jquery-ui-1.10.4.min.js"><\/script>')</script>
+  <script src="js/vendor/jquery.ui.touch-punch.min.js"></script>
+  <script src="js/vendor/jquery.hammer-full.min.js"></script>
   <script type="text/javascript" src="js/vendor/imagewarp/point.js"></script> 
   <script type="text/javascript" src="js/vendor/imagewarp/matrix22.js"></script>  
   <script type="text/javascript" src="js/vendor/imagewarp/deformation.js"></script>
   <script type="text/javascript" src="js/vendor/imagewarp/interpolation.js"></script>  
   <script src="js/transformer.js"></script>
+  <script src="js/mask.js"></script>
   <script src="js/warp.js"></script>
   <script src="js/main.js"></script>
 
