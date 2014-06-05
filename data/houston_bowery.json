@@ -1,0 +1,41 @@
+{
+  "assets": [
+    {
+      "id": "houston_bowery01",
+      "url": "img/houston_bowery01.jpg",
+      "title": "Houston & Bowery 2007",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "houston_bowery02",
+      "url": "img/houston_bowery02.jpg",
+      "title": "Houston & Bowery 2008",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "houston_bowery03",
+      "url": "img/houston_bowery03.jpg",
+      "title": "Houston & Bowery 2009",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "houston_bowery04",
+      "url": "img/houston_bowery04.jpg",
+      "title": "Houston & Bowery 2011",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "houston_bowery05",
+      "url": "img/houston_bowery05.jpg",
+      "title": "Houston & Bowery 2012",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "houston_bowery06",
+      "url": "img/houston_bowery06.jpg",
+      "title": "Houston & Bowery 2013",
+      "w": 800,
+      "h": 542
+    }
+  ]
+}

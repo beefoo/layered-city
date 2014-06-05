@@ -1,0 +1,41 @@
+{
+  "assets": [
+    {
+      "id": "labs01",
+      "url": "img/labs01.jpg",
+      "title": "Ben",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "labs02",
+      "url": "img/labs02.jpg",
+      "title": "Dave",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "labs03",
+      "url": "img/labs03.jpg",
+      "title": "Mauricio",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "labs04",
+      "url": "img/labs04.jpg",
+      "title": "Brian",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "labs05",
+      "url": "img/labs05.jpg",
+      "title": "Paul",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "labs06",
+      "url": "img/labs06.jpg",
+      "title": "Matt",
+      "w": 800,
+      "h": 542
+    }
+  ]
+}

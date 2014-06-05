@@ -11,7 +11,14 @@
     }   
     
     Warp.prototype.init = function(){
-      // this.initCanvases();
+      var that = this;
+      
+      $('body').bind('dom-ready', function(e){
+        that.initAfterDOMReady();
+      });
+    };
+    
+    Warp.prototype.initAfterDOMReady = function(){
       this.initDraggable();
       this.initListeners();
     };

@@ -13,6 +13,19 @@
     Mask.prototype.init = function(){      
       var that = this;
       
+      $('body').bind('dom-ready', function(e){
+        that.initAfterDOMReady();
+      });
+      
+      $('body').bind('mask-mode', function(e){
+        that.initCanvasMasks();
+      });      
+      
+    };
+    
+    Mask.prototype.initAfterDOMReady = function(){
+      var that = this;
+      
       $('.reset-mask-link').on('click', function(){
         that.resetCanvasMasks();
       });
@@ -24,10 +37,6 @@
         } else {
           $('.drawing-board').addClass('active');
         }
-      });
-      
-      $('body').bind('mask-mode', function(e){
-        that.initCanvasMasks();
       });
       
       this.initDrawingBoards();
