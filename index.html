@@ -31,7 +31,7 @@
       <div id="{{id}}" class="image-container slave {{active}}">
         <img id="image-{{id}}" class="image" src="{{url}}" width="{{w}}" height="{{h}}" data-target="#canvas-{{id}}" />
         <canvas id="canvas-{{id}}" class="canvas" width="{{w}}" height="{{h}}"></canvas>
-        <div class="drawing-board" data-target="#canvas-{{id}}"><div class="rectangle"></div></div>        
+        <div class="drawing-board" data-target="#canvas-{{id}}"><div class="shape"></div></div>        
         <div class="image-label">{{title}}</div>
         <div class="image-section-matrix"></div>
         <div class="handle tl"></div>
@@ -47,11 +47,13 @@
   <div class="controls clearfix">
     <button class="warp-link warp-tool">Align Images</button>
     <div class="switch mask-tool hide">
-      <div class="switch-toggle switch-candy">
+      <div class="switch-toggle switch-3 switch-candy">
         <input id="brush" name="tool" type="radio" value="brush" checked>
         <label for="brush" onclick="">Brush</label>      
         <input id="rectangle" name="tool" value="rectangle" type="radio">
-        <label for="rectangle" onclick="">Rectangle</label>      
+        <label for="rectangle" onclick="">Rectangle</label>
+        <input id="ellipse" name="tool" value="ellipse" type="radio">
+        <label for="ellipse" onclick="">Ellipse</label>    
         <a></a>
       </div>
     </div>

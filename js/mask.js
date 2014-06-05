@@ -13,6 +13,8 @@
     Mask.prototype.init = function(){      
       var that = this;
       
+      this.mode = $('input[name="tool"]').val();
+      
       $('body').bind('dom-ready', function(e){
         that.initAfterDOMReady();
       });
@@ -32,6 +34,9 @@
       
       $('input[name="tool"]').on('change', function(){
         var tool = $(this).val();
+        
+        that.mode = tool;
+        
         if (tool=='brush') {
           $('.drawing-board').removeClass('active');
         } else {
@@ -91,15 +96,15 @@
       
       $('.drawing-board').hammer().on('dragstart',function(e){        
         e.gesture.preventDefault();
-        that.rectangleStart($(this), e);
+        that.shapeStart($(this), e);
       });
       $('.drawing-board').hammer().on('drag',function(e){
         e.gesture.preventDefault();
-        that.rectangle($(this), e);
+        that.shape($(this), e);
       });
       $('.drawing-board').hammer().on('dragend',function(e){
         e.gesture.preventDefault();
-        that.rectangleStop($(this), e);
+        that.shapeStop($(this), e);
       });
     };
     
@@ -134,7 +139,7 @@
       // console.log('last stroke', this.lastX, this.lastY);
     };
     
-    Mask.prototype.rectangleStart = function($parent, e){      
+    Mask.prototype.shapeStart = function($parent, e){      
       var parentX = $parent.offset().left,
           parentY = $parent.offset().top,
           parentW = $parent.width(),
@@ -149,19 +154,20 @@
       this.parentY = parentY;
       this.startX = offsetX;
       this.startY = offsetY;
-      this.$rectangle = $parent.find('.rectangle');
+      this.$shape = $parent.find('.shape');
       
-      // update rectangle css      
-      this.$rectangle.css({
+      // update shape css      
+      this.$shape.css({
         width: '0px',
         height: '0px',
         top: this.startX+'px',
-        left: this.startY+'px'
+        left: this.startY+'px',
+        'border-radius': '0px'
       });
            
     };
     
-    Mask.prototype.rectangle = function($parent, e){  
+    Mask.prototype.shape = function($parent, e){  
       var startX = this.startX,
           startY = this.startY,
           parentX = this.parentX,
@@ -173,42 +179,68 @@
           width = Math.abs(offsetX-startX),
           height = Math.abs(offsetY-startY),
           left = (offsetX - startX < 0) ? offsetX : startX,
-          top = (offsetY - startY < 0) ? offsetY : startY;
+          top = (offsetY - startY < 0) ? offsetY : startY,
+          radius_x = 0, radius_y = 0;
+          
+      if (this.mode=='ellipse') {
+        radius_x = parseInt(width/2);
+        radius_y = parseInt(height/2);
+      }
       
-      // update rectangle css 
-      this.$rectangle.css({
+      // update shape css 
+      this.$shape.css({
         width: width+'px',
         height: height+'px',
         left: left+'px',
-        top: top+'px'
+        top: top+'px',
+        'border-radius': radius_x+'px / '+radius_y+'px'
       });
     };
     
-    Mask.prototype.rectangleStop = function($parent, e){      
-      var $rectangle = this.$rectangle,
-          x = parseInt($rectangle.css('left')),
-          y = parseInt($rectangle.css('top')),
-          w = parseInt($rectangle.width()),
-          h = parseInt($rectangle.height()),
+    Mask.prototype.shapeStop = function($parent, e){      
+      var $shape = this.$shape,
+          x = parseInt($shape.css('left')),
+          y = parseInt($shape.css('top')),
+          w = parseInt($shape.width()),
+          h = parseInt($shape.height()),
+          rx = parseInt(w/2),
+          ry = parseInt(h/2),          
+          cx = x+rx,
+          cy = y+ry,
           target = $parent.attr('data-target'),
           $canvas = $(target),
           canvas = $canvas[0],
           ctx = canvas.getContext("2d");
           
       ctx.globalCompositeOperation = 'destination-out';
-      ctx.beginPath();      
-      ctx.rect(x, y, w, h);
+      ctx.beginPath();
+      
+      // make ellipse
+      if (this.mode=='ellipse') {
+        ctx.save();
+        ctx.translate(cx-rx, cy-ry);
+        ctx.scale(rx, ry);
+        ctx.arc(1, 1, 1, 0, 2 * Math.PI, false);
+        ctx.restore();
+        
+      // make rectangle
+      } else {
+        ctx.rect(x, y, w, h);       
+      }      
+      
+      // fill it
       ctx.fillStyle = "#000000";
-      ctx.fill();      
+      ctx.fill(); 
       ctx.globalCompositeOperation = 'source-over';
       ctx.closePath();
       
-      // reset rectangle
-      this.$rectangle.css({
+      // reset shape
+      this.$shape.css({
         width: '0px',
         height: '0px',
         top: '0px',
-        left: '0px'
+        left: '0px',
+        'border-radius': '0px'
       });
     };
     

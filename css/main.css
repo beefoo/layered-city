@@ -107,7 +107,7 @@ video {
   z-index: 10;
   cursor: crosshair;
 }
-.drawing-board .rectangle {
+.drawing-board .shape {
   background: #d14747;
   opacity: 0.3;
   position: absolute;
@@ -175,12 +175,11 @@ video {
   text-align: right;
 }
 .controls .switch {
-  width: 320px;
+  width: 420px;
   float: right;
   margin-left: 20px;
 }
 .controls button {
-  display: block;
   float: right;
   background: #d14747;
   background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
