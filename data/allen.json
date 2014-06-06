@@ -1,0 +1,35 @@
+{
+  "assets": [
+    {
+      "id": "allen_stanton",
+      "url": "img/allen_stanton.jpg",
+      "title": "Allen & Stanton 1999",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "allen_stanton01",
+      "url": "img/allen_stanton01.jpg",
+      "title": "Allen & Stanton 2009",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "allen_stanton02",
+      "url": "img/allen_stanton02.jpg",
+      "title": "Allen & Stanton 2011",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "allen_stanton03",
+      "url": "img/allen_stanton03.jpg",
+      "title": "Allen & Stanton 2012",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "allen_stanton04",
+      "url": "img/allen_stanton04.jpg",
+      "title": "Allen & Stanton 2013",
+      "w": 800,
+      "h": 542
+    }
+  ]
+}

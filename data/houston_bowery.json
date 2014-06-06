@@ -1,15 +1,9 @@
 {
   "assets": [
     {
-      "id": "houston_bowery01",
-      "url": "img/houston_bowery01.jpg",
-      "title": "Houston & Bowery 2007",
-      "w": 800,
-      "h": 542
-    },{
       "id": "houston_bowery02",
       "url": "img/houston_bowery02.jpg",
-      "title": "Houston & Bowery 2008",
+      "title": "Houston & Bowery 2007",
       "w": 800,
       "h": 542
     },{
