@@ -1,0 +1,53 @@
+{
+  "assets": [
+    {
+      "id": "bowery01",
+      "url": "img/bowery/bowery_0011_7-2008.jpg",
+      "title": "Bowery Wall, New York, Jul 2008",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery02",
+      "url": "img/bowery/bowery_0010_7-2009.jpg",
+      "title": "Bowery Wall, New York, Jul 2009",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery03",
+      "url": "img/bowery/bowery_0009_9-2010.jpg",
+      "title": "Bowery Wall, New York, Sep 2010",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery04",
+      "url": "img/bowery/bowery_0008_6-2011.jpg",
+      "title": "Bowery Wall, New York, Jun 2011",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery05",
+      "url": "img/bowery/bowery_0007_7-2011.jpg",
+      "title": "Bowery Wall, New York, Jul 2011",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery06",
+      "url": "img/bowery/bowery_0006_3-2012.jpg",
+      "title": "Bowery Wall, New York, Mar 2012",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery10",
+      "url": "img/bowery/bowery_0002_8-2013.jpg",
+      "title": "Bowery Wall, New York, Aug 2013",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery11",
+      "url": "img/bowery/bowery_0001_2-2014.jpg",
+      "title": "Bowery Wall, New York, Feb 2014",
+      "w": 800,
+      "h": 542
+    }
+  ]
+}

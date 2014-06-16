@@ -21,13 +21,17 @@
     Warp.prototype.initAfterDOMReady = function(){
       this.initDraggable();
       this.initListeners();
+      this.checkMode();
     };
     
-    Warp.prototype.initCanvases = function(){
-      var that = this;
+    Warp.prototype.initCanvases = function(callback){
+      var that = this,
+          loaded = 0,
+          $images = $('.image'),
+          image_count = $images.length;
       
       // initialize canvases
-      $('.image').one('load', function() {
+      $images.one('load', function() {
         var image = $(this)[0],
             target = $(this).attr('data-target'),
             canvas = $(target)[0],
@@ -39,6 +43,10 @@
         ctx.drawImage(image, 0, 0, image.width, image.height);
 
         console.log('loaded', target);
+        loaded++;
+        if (loaded >= image_count) {
+          callback();
+        }
         
       }).each(function() {
         if(this.complete) $(this).load();
@@ -71,7 +79,40 @@
         that.doWarp();
       });
       
+      // save/output
+      $(document).on('keydown', function(e){        
+        switch(e.keyCode) {
+          // o - output images
+          case 79:
+            if (e.ctrlKey) {
+              e.preventDefault();
+              that.outputImages();
+            }
+            break;
+          default:
+            break;
+        }
+      });
+    };
+    
+    Warp.prototype.checkMode = function(){
+      var mode = $('.content').attr('data-mode');
       
+      if (mode === 'mask') {
+        this.initCanvases(function(){
+          $('.image-section-matrix, .handle').hide();
+          $('.image').addClass('invisible');
+          $('.warp-tool').hide();
+          $('.mask-tool').show();
+          $('.container').addClass('mask-mode');
+          $('body').trigger('mask-mode');          
+          var $link = $('.nav > a').last(),
+              $content = $($link.attr('href'));             
+          $('.nav-link, .image-container').removeClass('active');          
+          $link.addClass('active');
+          $content.addClass('active');          
+        });        
+      }     
     };
     
     Warp.prototype.coordinatesToPoints = function(c){
@@ -193,6 +234,18 @@
         x1: x1, x2: x2, x3: x3, x4: x4,
         y1: y1, y2: y2, y3: y3, y4: y4
       }
+    };
+    
+    Warp.prototype.outputImages = function(){
+      var $canvases = $('canvas.canvas');
+            
+      $canvases.each(function(){
+        var $canvas = $(this),
+            canvas = $canvas[0],
+            dataURL = canvas.toDataURL("image/png");
+        
+        $('#images-output').append($('<img/>', { src : dataURL }));
+      });      
     };
     
     Warp.prototype.storeHandlePositions = function(){

@@ -57,9 +57,13 @@
     
     App.prototype.loadData = function(){
       var that = this,
-          src = this.getQueryParamValue('source') || 'houston_bowery',
-          url = 'data/'+src+'.json';
-          
+          url = $('.content').attr('data-src'),
+          query_src = this.getQueryParamValue('src');          
+      
+      if (query_src) {
+        url = 'data/'+query_src+'.json';
+      }
+       
       $.getJSON( url, function(data) {
         var assets = data.assets;
         
@@ -100,7 +104,6 @@
       $link.addClass('active');
       $content.addClass('active');
     };
-
 
     return App;
 

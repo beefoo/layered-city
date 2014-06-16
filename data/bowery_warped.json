@@ -1,0 +1,53 @@
+{
+  "assets": [
+    {
+      "id": "bowery01",
+      "url": "img/bowery_warped/1.png",
+      "title": "Bowery Wall, New York, Jul 2008",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery02",
+      "url": "img/bowery_warped/2.png",
+      "title": "Bowery Wall, New York, Jul 2009",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery03",
+      "url": "img/bowery_warped/3.png",
+      "title": "Bowery Wall, New York, Sep 2010",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery04",
+      "url": "img/bowery_warped/4.png",
+      "title": "Bowery Wall, New York, Jun 2011",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery05",
+      "url": "img/bowery_warped/5.png",
+      "title": "Bowery Wall, New York, Jul 2011",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery06",
+      "url": "img/bowery_warped/6.png",
+      "title": "Bowery Wall, New York, Mar 2012",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery10",
+      "url": "img/bowery_warped/10.png",
+      "title": "Bowery Wall, New York, Aug 2013",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "bowery11",
+      "url": "img/bowery_warped/11.png",
+      "title": "Bowery Wall, New York, Feb 2014",
+      "w": 800,
+      "h": 542
+    }
+  ]
+}
