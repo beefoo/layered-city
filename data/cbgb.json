@@ -1,0 +1,17 @@
+{
+  "assets": [
+    {
+      "id": "cbgb_after",
+      "url": "img/cbgb_after.jpg",
+      "title": "CBGB After",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "cbgb_before",
+      "url": "img/cbgb_before.jpg",
+      "title": "CBGB Before",
+      "w": 800,
+      "h": 542
+    }
+  ]
+}
