@@ -4,7 +4,8 @@
   Mask = (function() {
     function Mask(options) {
       var defaults = {
-        debug: false
+        debug: false,
+        brush_size: 40
       };
       this.options = $.extend(defaults, options);
       this.init();      
@@ -121,11 +122,12 @@
     Mask.prototype.draw = function($parent, e){  
       this.updateLastPos($parent, e);
       
-      var gradient_black = this.ctx.createRadialGradient(this.lastX, this.lastY, 0, this.lastX, this.lastY, 30);
-        gradient_black.addColorStop(0, 'rgba(0, 0, 0, 1)');
-        gradient_black.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      var brush_size = this.options.brush_size,
+          gradient_black = this.ctx.createRadialGradient(this.lastX, this.lastY, 0, this.lastX, this.lastY, brush_size);
+          gradient_black.addColorStop(0, 'rgba(0, 0, 0, 1)');
+          gradient_black.addColorStop(1, 'rgba(0, 0, 0, 0)');
         
-      this.ctx.arc(this.lastX, this.lastY, 30, 0, 2 * Math.PI);
+      this.ctx.arc(this.lastX, this.lastY, brush_size, 0, 2 * Math.PI);
       this.ctx.fillStyle = gradient_black;
       this.ctx.fill();
       

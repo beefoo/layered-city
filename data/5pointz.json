@@ -1,0 +1,17 @@
+{
+  "assets": [
+    {
+      "id": "5pointz_before",
+      "url": "img/5pointz_before.jpg",
+      "title": "5 Pointz Before",
+      "w": 800,
+      "h": 542
+    },{
+      "id": "5pointz_after",
+      "url": "img/5pointz_after.jpg",
+      "title": "5 Pointz After",
+      "w": 800,
+      "h": 542
+    }
+  ]
+}
