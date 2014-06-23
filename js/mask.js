@@ -5,7 +5,7 @@
     function Mask(options) {
       var defaults = {
         debug: false,
-        brush_size: 40
+        brush_size: 30
       };
       this.options = $.extend(defaults, options);
       this.init();      

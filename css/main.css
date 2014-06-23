@@ -17,6 +17,9 @@ img,
 video {
   vertical-align: middle;
 }
+p a {
+  color: #d14747;
+}
 
 .container,
 .controls {

@@ -33,6 +33,7 @@
       });
       
       $('.warp-link').on('click', function(){
+        $('.instructions').hide();
         $('.warp-tool').hide();
         $('.mask-tool').show();
         $('.container').addClass('mask-mode');

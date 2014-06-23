@@ -20,6 +20,11 @@
   
   <div class="container clearfix">
     
+    <p class="description">
+      This is a tool for warping, layering, and masking of images. You can read more about it 
+      <a href="http://www.nypl.org/blog/2014/06/18/peeling-painted-layers-nyc-walls" target="_blank">here</a>.
+    </p>
+    
     <div class="content" data-src="data/bowery.json">      
       <script id="content-tmpl" type="x-tmpl-mustache">
       <div id="{{id}}" class="image-container slave {{active}}">
@@ -36,7 +41,12 @@
       </script>
     </div> <!-- /content -->
     
-    <div class="controls clearfix">
+    <div class="instructions">
+      <p>Click on each thumbnail below and drag the control points to each corner of the painted wall above.
+      Once all the control points are in place, click <strong>Align Images</strong> below.</p>
+    </div>
+      
+    <div class="controls clearfix">      
       <button class="warp-link warp-tool">Align Images</button>
       <div class="switch mask-tool hide">
         <div class="switch-toggle switch-3 switch-candy">

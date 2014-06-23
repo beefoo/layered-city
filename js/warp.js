@@ -102,6 +102,7 @@
         this.initCanvases(function(){
           $('.image-section-matrix, .handle').hide();
           $('.image').addClass('invisible');
+          $('.instructions').hide();
           $('.warp-tool').hide();
           $('.mask-tool').show();
           $('.container').addClass('mask-mode');
