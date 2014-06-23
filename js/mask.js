@@ -265,9 +265,10 @@
     
     Mask.prototype.updateLastPos = function($parent, e){
       var x = e.gesture.center.clientX,
-          y = e.gesture.center.clientY;
+          y = e.gesture.center.clientY,
+          scrollTop = $(window).scrollTop();
       this.lastX = parseInt(x-$parent.offset().left);
-      this.lastY = parseInt(y-$parent.offset().top);
+      this.lastY = parseInt(y-$parent.offset().top+scrollTop);
     };
   
     return Mask;
