@@ -96,7 +96,10 @@
     };
     
     Warp.prototype.checkMode = function(){
-      var mode = $('.content').attr('data-mode');
+      var mode = $('.content').attr('data-mode'),
+          url_mode = helper.getQueryParamValue('mode');
+          
+      if (url_mode) mode = url_mode;
       
       if (mode === 'mask') {
         this.initCanvases(function(){

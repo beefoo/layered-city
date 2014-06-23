@@ -42,24 +42,10 @@
       
     };
     
-    App.prototype.getQueryParamValue = function(param) {
-      var url = document.location.search,
-          params = {}, tokens,
-          re = /[?&]?([^=]+)=([^&]*)/g;
-          
-      url = url.split("+").join(" ");
-    
-      while (tokens = re.exec(url)) {
-        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
-      }
-    
-      return params[param];
-    };
-    
     App.prototype.loadData = function(){
       var that = this,
           url = $('.content').attr('data-src'),
-          query_src = this.getQueryParamValue('src');          
+          query_src = helper.getQueryParamValue('src');          
       
       if (query_src) {
         url = 'data/'+query_src+'.json';
