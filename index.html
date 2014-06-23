@@ -25,6 +25,11 @@
       <a href="http://www.nypl.org/blog/2014/06/18/peeling-painted-layers-nyc-walls" target="_blank">here</a>.
     </p>
     
+    <div class="instructions warp-tool">
+      <p>Drag the control points to each corner of the painted wall above and
+      repeat for each image. Once complete, you will be able to align them.</p>
+    </div>
+    
     <div class="content" data-src="data/bowery_warped.json" data-mode="mask">      
       <script id="content-tmpl" type="x-tmpl-mustache">
       <div id="{{id}}" class="image-container slave {{active}}">
@@ -41,13 +46,9 @@
       </script>
     </div> <!-- /content -->
     
-    <div class="instructions">
-      <p>Click on each thumbnail below and drag the control points to each corner of the painted wall above.
-      Once all the control points are in place, click <strong>Align Images</strong> below.</p>
-    </div>
-    
     <div class="controls clearfix">
-      <button class="warp-link warp-tool">Align Images</button>
+      <button class="warp-link warp-tool hide">Align Images</button>
+      <button class="next-link warp-tool">Next</button>
       <div class="switch mask-tool hide">
         <div class="switch-toggle switch-3 switch-candy">
           <input id="brush" name="tool" type="radio" value="brush" checked>

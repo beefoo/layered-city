@@ -79,6 +79,11 @@
         that.doWarp();
       });
       
+      $('body').bind('last-link-reached', function(e){
+        $('.warp-link').removeClass('hide');
+        $('.next-link').hide();
+      });
+      
       // save/output
       $(document).on('keydown', function(e){        
         switch(e.keyCode) {
@@ -105,7 +110,6 @@
         this.initCanvases(function(){
           $('.image-section-matrix, .handle').hide();
           $('.image').addClass('invisible');
-          $('.instructions').hide();
           $('.warp-tool').hide();
           $('.mask-tool').show();
           $('.container').addClass('mask-mode');

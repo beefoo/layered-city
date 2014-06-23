@@ -32,14 +32,29 @@
         that.showContent($(this).attr('href'))
       });
       
+      $('.next-link').on('click', function(){
+        that.doNext();
+      });
+      
       $('.warp-link').on('click', function(){
-        $('.instructions').hide();
         $('.warp-tool').hide();
         $('.mask-tool').show();
         $('.container').addClass('mask-mode');
         $('body').trigger('mask-mode');
       });     
       
+    };
+    
+    App.prototype.doNext = function(){
+      var $links = $('.nav > a'),
+          link_count = $links.length,
+          $active_link = $('.nav > a.active').first(),
+          active_index = $links.index($active_link),
+          next_index = active_index+1;
+
+      if (next_index < link_count) {
+        this.showContent( $links.eq(next_index).attr('href') );     
+      }
     };
     
     App.prototype.loadData = function(){
@@ -84,12 +99,19 @@
     
     App.prototype.showContent = function(href){
       var $content = $(href),
-          $link = $('.nav-link[href="'+href+'"]');
+          $link = $('.nav-link[href="'+href+'"]'),
+          $links = $('.nav > .nav-link'),
+          index = $links.index($link);
           
       $('.nav-link, .image-container').removeClass('active');
       
       $link.addClass('active');
       $content.addClass('active');
+      
+      // last one reached
+      if (index >= ($links.length-1)) {
+        $('body').trigger('last-link-reached');
+      }
     };
 
     return App;

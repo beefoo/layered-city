@@ -20,6 +20,9 @@ video {
 p a {
   color: #d14747;
 }
+button {
+  outline: none;
+}
 
 .container,
 .controls {
