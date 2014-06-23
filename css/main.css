@@ -24,10 +24,24 @@ button {
   outline: none;
 }
 
-.container,
-.controls {
+.header {
+  background: #000;
+  text-align: center;
+  padding: 10px 0;
+}
+.header p {
+  margin: 0;
+  height: 22px;
+  line-height: 22px;
+  vertical-align: middle;
+}
+.header img {
+  margin: -3px 3px 0 0;
+}
+
+.container {
   width: 800px;
-  margin: 20px auto;
+  margin: 0 auto 40px;
 }
 .nav {
   margin-top: 10px;
@@ -180,6 +194,8 @@ button {
 }
 
 .controls {
+  width: 100%;
+  margin: 20px 0;
   text-align: right;
 }
 .controls .switch {
